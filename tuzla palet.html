@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuzla Palet | Endüstriyel Palet Alım, Satım, Tedarik & B2B Teklif Portalı</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        industrial: {
+                            50: '#f4f6f8',
+                            100: '#e1e7ec',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#090d16',
+                        },
+                        amberAccent: {
+                            DEFAULT: '#f59e0b',
+                            dark: '#d97706',
+                            light: '#fbbf24'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .carousel-slide { transition: opacity 0.8s ease-in-out; }
+    </style>
+</head>
+<body class="bg-industrial-950 text-slate-100 antialiased selection:bg-amberAccent selection:text-industrial-900">
+
+    <!-- Top Notification Bar -->
+    <div class="bg-industrial-900 border-b border-slate-800 text-slate-300 text-xs py-2 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-4 flex-wrap justify-center sm:justify-start">
+                <span><i class="fa-solid fa-location-dot text-amberAccent mr-1"></i> İstanbul / Tuzla ve Kocaeli OSB Bölgeleri</span>
+                <span class="hidden md:inline"><i class="fa-solid fa-clock text-amberAccent mr-1"></i> 7/24 Acil Sevkiyat Desteği</span>
+                <span class="hidden lg:inline"><i class="fa-solid fa-envelope text-amberAccent mr-1"></i> koray_palut@hotmail.com</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="tel:05357683572" class="hover:text-amberAccent transition font-semibold"><i class="fa-solid fa-phone text-amberAccent mr-1"></i> 0535 768 35 72</a>
+                <a href="https://wa.me/905357683572?text=Merhaba,%20palet%20tedari%C4%9Fi%20i%C3%A7in%20bilgi%20almak%20istiyorum." target="_blank" class="hover:text-amberAccent transition flex items-center gap-1 text-green-400 font-semibold"><i class="fa-brands fa-whatsapp"></i> Hızlı WhatsApp</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header / Navigasyon -->
+    <header class="sticky top-0 z-40 bg-industrial-900/95 backdrop-blur shadow-lg border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3">
+                <div class="bg-amberAccent text-industrial-950 p-2.5 rounded-xl shadow-lg flex items-center justify-center">
+                    <i class="fa-solid fa-boxes-stacked text-2xl"></i>
+                </div>
+                <div>
+                    <span class="text-2xl font-extrabold tracking-tight text-white">TUZLA<span class="text-amberAccent">PALET</span></span>
+                    <p class="text-[10px] font-semibold tracking-wider text-slate-400 uppercase">Endüstriyel Ahşap & B2B Çözümleri</p>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Menu -->
+            <nav class="hidden lg:flex items-center gap-8 font-medium text-sm text-slate-200">
+                <a href="#" class="hover:text-amberAccent transition font-semibold">Ana Sayfa</a>
+                <a href="#kategoriler" class="hover:text-amberAccent transition">Ürünlerimiz</a>
+                <a href="#alim-satim" class="hover:text-amberAccent transition">Alım & Satım</a>
+                <a href="#misyon-vizyon" class="hover:text-amberAccent transition">Hakkımızda</a>
+                <a href="#iletisim" class="hover:text-amberAccent transition">Teklif Al</a>
+            </nav>
+
+            <!-- Header Action Buttons -->
+            <div class="hidden sm:flex items-center gap-3">
+                <button onclick="toggleAdminModal(true)" class="bg-slate-800 hover:bg-slate-700 text-amberAccent border border-amberAccent/40 font-bold px-4 py-2.5 rounded-xl transition flex items-center gap-2 text-sm shadow">
+                    <i class="fa-solid fa-user-shield"></i>
+                    <span>Admin Paneli</span>
+                    <span id="nav-badge" class="bg-amberAccent text-industrial-950 text-xs px-2 py-0.5 rounded-full font-extrabold hidden">0</span>
+                </button>
+                <a href="#iletisim" class="bg-amberAccent hover:bg-amberAccent-dark text-industrial-950 font-bold px-5 py-2.5 rounded-xl shadow-md transition transform active:scale-95 flex items-center gap-2 text-sm">
+                    <i class="fa-solid fa-file-contract"></i>
+                    <span>Teklif İste</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobile-menu-btn" aria-label="Menüyü Aç" class="lg:hidden text-white text-2xl p-2 focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-industrial-900 border-b border-slate-800 px-4 pt-2 pb-4 space-y-3 shadow-xl">
+            <a href="#" class="block py-2 text-white font-semibold border-b border-slate-800">Ana Sayfa</a>
+            <a href="#kategoriler" class="block py-2 text-slate-300 border-b border-slate-800">Ürünlerimiz</a>
+            <a href="#alim-satim" class="block py-2 text-slate-300 border-b border-slate-800">Alım & Satım</a>
+            <a href="#misyon-vizyon" class="block py-2 text-slate-300 border-b border-slate-800">Hakkımızda</a>
+            <a href="#iletisim" class="block py-2 text-slate-300 border-b border-slate-800">Teklif Al</a>
+            <div class="pt-2 flex flex-col gap-2">
+                <button onclick="toggleAdminModal(true)" class="w-full text-center bg-slate-800 text-amberAccent font-bold py-2.5 rounded-xl border border-amberAccent/40 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-user-shield"></i> Admin Paneli
+                </button>
+                <a href="#iletisim" class="block text-center bg-amberAccent text-industrial-950 font-bold py-2.5 rounded-xl">Hızlı Teklif Al</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Slider (5 Slide Carousel) -->
+    <section class="relative bg-industrial-950 text-white overflow-hidden min-h-[620px] flex items-center border-b border-slate-800">
+        
+        <!-- Slider Container -->
+        <div id="slider-container" class="absolute inset-0 z-0">
+            
+            <!-- Slayt 1: images/slider.jpg -->
+            <div class="carousel-slide absolute inset-0 opacity-100 duration-1000">
+                <img src="images/slider.jpg" onerror="this.src='https://placehold.co/1920x1080/0f172a/ffffff?text=EPAL+ve+Euro+Palet+Imalati'" alt="Palet Üretimi ve İmalatı" class="w-full h-full object-cover opacity-65">
+                <div class="absolute inset-0 bg-gradient-to-r from-industrial-950 via-industrial-950/70 to-transparent"></div>
+                <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+                    <div class="max-w-2xl py-20">
+                        <span class="inline-flex items-center gap-2 bg-amberAccent/20 text-amberAccent text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 border border-amberAccent/30">
+                            <i class="fa-solid fa-hammer"></i> Yüksek Kalite Üretim & Stok
+                        </span>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
+                            EPAL / EURO Palet <span class="text-amberAccent">İmalatı</span>
+                        </h1>
+                        <p class="text-slate-200 text-lg sm:text-xl mb-8 leading-relaxed">
+                            Sertifikalı, ISPM 15 standartlarına uygun, yüksek taşıma kapasiteli EPAL ve Euro ahşap palet üretimi ile tesisinize kesintisiz tedarik.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#kategoriler" class="bg-amberAccent hover:bg-amberAccent-dark text-industrial-950 font-bold px-8 py-4 rounded-xl shadow-xl transition text-center flex items-center justify-center gap-3">
+                                <span>Kategorileri İnceleyin</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </a>
+                            <a href="tel:05357683572" class="bg-slate-900/80 hover:bg-slate-900 text-white font-semibold px-8 py-4 rounded-xl border border-slate-700 transition text-center flex items-center justify-center gap-3">
+                                <i class="fa-solid fa-phone text-amberAccent"></i>
+                                <span>0535 768 35 72</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slayt 2: images/slider1.jpg -->
+            <div class="carousel-slide absolute inset-0 opacity-0 duration-1000">
+                <img src="images/slider1.jpg" onerror="this.src='https://placehold.co/1920x1080/111827/ffffff?text=Turpal+ve+CP+Paletler'" alt="Turpal ve CP Paletler" class="w-full h-full object-cover opacity-65">
+                <div class="absolute inset-0 bg-gradient-to-r from-industrial-950 via-industrial-950/70 to-transparent"></div>
+                <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+                    <div class="max-w-2xl py-20">
+                        <span class="inline-flex items-center gap-2 bg-amberAccent/20 text-amberAccent text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 border border-amberAccent/30">
+                            <i class="fa-solid fa-flask"></i> Endüstriyel & Kimya Standartları
+                        </span>
+                        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
+                            TURPAL & <span class="text-amberAccent">CP Paletler</span>
+                        </h2>
+                        <p class="text-slate-200 text-lg sm:text-xl mb-8 leading-relaxed">
+                            Türkiye standartlarında TURPAL ve kimya sanayisi için CP1'den CP9'a tüm seri palet çözümlerimiz ile lojistiğiniz güvende.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button onclick="quickOrder('CP Paletler (CP1 - CP9)')" class="bg-amberAccent hover:bg-amberAccent-dark text-industrial-950 font-bold px-8 py-4 rounded-xl shadow-xl transition text-center flex items-center justify-center gap-3">
+                                <span>CP Palet Teklifi Al</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                            <a href="tel:05357683572" class="bg-slate-900/80 hover:bg-slate-900 text-white font-semibold px-8 py-4 rounded-xl border border-slate-700 transition text-center flex items-center justify-center gap-3">
+                                <i class="fa-solid fa-phone text-amberAccent"></i>
+                                <span>0535 768 35 72</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slayt 3: images/slider2.jpg -->
+            <div class="carousel-slide absolute inset-0 opacity-0 duration-1000">
+                <img src="images/slider2.jpg" onerror="this.src='https://placehold.co/1920x1080/1e293b/ffffff?text=Ozel+Olcu+ve+Ahsap+Sandik'" alt="Özel Ölçü ve Ahşap Sandık" class="w-full h-full object-cover opacity-65">
+                <div class="absolute inset-0 bg-gradient-to-r from-industrial-950 via-industrial-950/70 to-transparent"></div>
+                <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+                    <div class="max-w-2xl py-20">
+                        <span class="inline-flex items-center gap-2 bg-amberAccent/20 text-amberAccent text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 border border-amberAccent/30">
+                            <i class="fa-solid fa-box-archive"></i> Özel Tasarım & İmalat
+                        </span>
+                        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
+                            Özel Ölçü & <span class="text-amberAccent">Ahşap Sandık</span>
+                        </h2>
+                        <p class="text-slate-200 text-lg sm:text-xl mb-8 leading-relaxed">
+                            Projenize, makinelerinize ve ağır ihracat yüklerinize özel boyutlarda dayanıklı ahşap sandık ve palet imalatı.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button onclick="quickOrder('Özel Ölçü & Ahşap Sandık')" class="bg-amberAccent hover:bg-amberAccent-dark text-industrial-950 font-bold px-8 py-4 rounded-xl shadow-xl transition text-center flex items-center justify-center gap-3">
+                                <span>Özel İmalat Teklifi Al</span>
+                                <i class="fa-solid fa-pen-ruler"></i>
+                            </button>
+                            <a href="tel:05357683572" class="bg-slate-900/80 hover:bg-slate-900 text-white font-semibold px-8 py-4 rounded-xl border border-slate-700 transition text-center flex items-center justify-center gap-3">
+                                <i class="fa-solid fa-phone text-amberAccent"></i>
+                                <span>0535 768 35 72</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slayt 4: images/slider3.jpg -->
+            <div class="carousel-slide absolute inset-0 opacity-0 duration-1000">
+                <img src="images/slider3.jpg" onerror="this.src='https://placehold.co/1920x1080/090d16/ffffff?text=2.+El+Palet+ve+Geri+Donusum'" alt="2. El Palet ve Geri Dönüşüm" class="w-full h-full object-cover opacity-65">
+                <div class="absolute inset-0 bg-gradient-to-r from-industrial-950 via-industrial-950/70 to-transparent"></div>
+                <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+                    <div class="max-w-2xl py-20">
+                        <span class="inline-flex items-center gap-2 bg-amberAccent/20 text-amberAccent text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 border border-amberAccent/30">
+                            <i class="fa-solid fa-recycle"></i> Ekonomik & Çevre Dostu
+                        </span>
+                        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
+                            2. El Palet <span class="text-amberAccent">Alım & Satım</span>
+                        </h2>
+                        <p class="text-slate-200 text-lg sm:text-xl mb-8 leading-relaxed">
+                            Bakımı ve kontrolleri yapılmış, ekonomik 2. el ahşap paletler. Adresinizden yerinde nakit alım ve stoktan teslimat.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button onclick="quickOrder('2. El Paletler (Alım / Satım)')" class="bg-amberAccent hover:bg-amberAccent-dark text-industrial-950 font-bold px-8 py-4 rounded-xl shadow-xl transition text-center flex items-center justify-center gap-3">
+                                <span>Alım - Satım Başlat</span>
+                                <i class="fa-solid fa-handshake"></i>
+                            </button>
+                            <a href="tel:05357683572" class="bg-slate-900/80 hover:bg-slate-900 text-white font-semibold px-8 py-4 rounded-xl border border-slate-700 transition text-center flex items-center justify-center gap-3">
+                                <i class="fa-solid fa-phone text-amberAccent"></i>
+                                <span>0535 768 35 72</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slayt 5: images/slider4.jpg -->
+            <div class="carousel-slide absolute inset-0 opacity-0 duration-1000">
+                <img src="images/slider4.jpg" onerror="this.src='https://placehold.co/1920x1080/1f2937/ffffff?text=Plastik+Paletler+ve+Hijyenik+Cozumler'" alt="Plastik Paletler ve Hijyenik Çözümler" class="w-full h-full object-cover opacity-65">
+                <div class="absolute inset-0 bg-gradient-to-r from-industrial-950 via-industrial-950/70 to-transparent"></div>
+                <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
+                    <div class="max-w-2xl py-20">
+                        <span class="inline-flex items-center gap-2 bg-amberAccent/20 text-amberAccent text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 border border-amberAccent/30">
+                            <i class="fa-solid fa-layer-group"></i> Hijyenik & Uzun Ömürlü
+                        </span>
+                        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-6">
+                            Endüstriyel <span class="text-amberAccent">Plastik Paletler</span>
+                        </h2>
+                        <p class="text-slate-200 text-lg sm:text-xl mb-8 leading-relaxed">
+                            Gıda, ilaç ve hijyen gerektiren sektörler için kolay temizlenebilir, dayanıklı ve hafif plastik palet seçenekleri.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button onclick="quickOrder('Plastik Paletler')" class="bg-amberAccent hover:bg-amberAccent-dark text-industrial-950 font-bold px-8 py-4 rounded-xl shadow-xl transition text-center flex items-center justify-center gap-3">
+                                <span>Plastik Palet Teklifi Al</span>
+                                <i class="fa-solid fa-cubes"></i>
+                            </button>
+                            <a href="tel:05357683572" class="bg-slate-900/80 hover:bg-slate-900 text-white font-semibold px-8 py-4 rounded-xl border border-slate-700 transition text-center flex items-center justify-center gap-3">
+                                <i class="fa-solid fa-phone text-amberAccent"></i>
+                                <span>0535 768 35 72</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Slider Controls -->
+        <button onclick="prevSlide()" aria-label="Önceki Slayt" class="absolute left-4 top-1/2 -translate-y-1/2 z-30 bg-industrial-900/80 hover:bg-amberAccent hover:text-industrial-950 text-white p-3 sm:p-4 rounded-full border border-slate-700 transition">
+            <i class="fa-solid fa-chevron-left text-lg"></i>
+        </button>
+        <button onclick="nextSlide()" aria-label="Sonraki Slayt" class="absolute right-4 top-1/2 -translate-y-1/2 z-30 bg-industrial-900/80 hover:bg-amberAccent hover:text-industrial-950 text-white p-3 sm:p-4 rounded-full border border-slate-700 transition">
+            <i class="fa-solid fa-chevron-right text-lg"></i>
+        </button>
+
+        <!-- Slider Dots -->
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2" id="slider-dots">
+            <button onclick="currentSlide(0)" aria-label="Slayt 1" class="slider-dot w-8 h-2 rounded-full bg-amberAccent transition-all"></button>
+            <button onclick="currentSlide(1)" aria-label="Slayt 2" class="slider-dot w-3 h-2 rounded-full bg-slate-600 transition-all"></button>
+            <button onclick="currentSlide(2)" aria-label="Slayt 3" class="slider-dot w-3 h-2 rounded-full bg-slate-600 transition-all"></button>
+            <button onclick="currentSlide(3)" aria-label="Slayt 4" class="slider-dot w-3 h-2 rounded-full bg-slate-600 transition-all"></button>
+            <button onclick="currentSlide(4)" aria-label="Slayt 5" class="slider-dot w-3 h-2 rounded-full bg-slate-600 transition-all"></button>
+        </div>
+    </section>
+
+    <!-- Trust Badges Section -->
+    <section class="bg-industrial-900 border-b border-slate-800 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div class="p-4 bg-industrial-950/50 rounded-xl border border-slate-800/60">
+                <div class="text-amberAccent text-3xl mb-2"><i class="fa-solid fa-truck-fast"></i></div>
+                <h4 class="font-bold text-white">Aynı Gün Sevkiyat</h4>
+                <p class="text-xs text-slate-400 mt-1">Tuzla ve Kocaeli OSB'lere hızlı teslimat</p>
+            </div>
+            <div class="p-4 bg-industrial-950/50 rounded-xl border border-slate-800/60">
+                <div class="text-amberAccent text-3xl mb-2"><i class="fa-solid fa-certificate"></i></div>
+                <h4 class="font-bold text-white">EPAL Standartları</h4>
+                <p class="text-xs text-slate-400 mt-1">Uluslararası standartlara tam uyumlu</p>
+            </div>
+            <div class="p-4 bg-industrial-950/50 rounded-xl border border-slate-800/60">
+                <div class="text-amberAccent text-3xl mb-2"><i class="fa-solid fa-handshake-angle"></i></div>
+                <h4 class="font-bold text-white">Güvenli Tedarik</h4>
+                <p class="text-xs text-slate-400 mt-1">Fabrikanız için güçlü tedarik ortağı</p>
+            </div>
+            <div class="p-4 bg-industrial-950/50 rounded-xl border border-slate-800/60">
+                <div class="text-amberAccent text-3xl mb-2"><i class="fa-solid fa-tags"></i></div>
+                <h4 class="font-bold text-white">Uygun Fiyat</h4>
+                <p class="text-xs text-slate-400 mt-1">Doğrudan üreticiden bütçe dostu teklifler</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hizmetler / Ürün Kategorileri (Paletix Tarzı Filtreli Beyaz Kartlar) -->
+    <section id="kategoriler" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <span class="text-amberAccent font-bold text-sm tracking-wider uppercase bg-amberAccent/10 px-3 py-1 rounded-md border border-amberAccent/20">Dinamik Ürün Portföyü</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3 mb-4">Endüstriyel Palet Kategorileri</h2>
+            <p class="text-slate-300">İhtiyacınıza uygun kategoriyi seçerek ürünlerimizi listeleyebilir ve hızlıca B2B teklif talebi oluşturabilirsiniz.</p>
+        </div>
+
+        <!-- Category Filter Buttons -->
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-12" id="category-filters">
+            <button onclick="filterCategory('all')" class="cat-filter-btn active bg-amberAccent text-industrial-950 font-bold px-5 py-2.5 rounded-xl text-sm transition shadow-md">Tümü</button>
+            <button onclick="filterCategory('epal')" class="cat-filter-btn bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium px-5 py-2.5 rounded-xl text-sm border border-slate-700 transition">EPAL / Euro</button>
+            <button onclick="filterCategory('turpal')" class="cat-filter-btn bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium px-5 py-2.5 rounded-xl text-sm border border-slate-700 transition">TURPAL</button>
+            <button onclick="filterCategory('cp')" class="cat-filter-btn bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium px-5 py-2.5 rounded-xl text-sm border border-slate-700 transition">CP Seri (Kimya)</button>
+            <button onclick="filterCategory('ozel')" class="cat-filter-btn bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium px-5 py-2.5 rounded-xl text-sm border border-slate-700 transition">Özel Sandık & İmalat</button>
+            <button onclick="filterCategory('ikinciel')" class="cat-filter-btn bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium px-5 py-2.5 rounded-xl text-sm border border-slate-700 transition">2. El Paletler</button>
+            <button onclick="filterCategory('plastik')" class="cat-filter-btn bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium px-5 py-2.5 rounded-xl text-sm border border-slate-700 transition">Plastik Paletler</button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="product-grid">
+            
+            <!-- Kart 1: EPAL / Euro Palet -->
+            <div class="product-card bg-white text-zinc-900 rounded-2xl shadow-xl overflow-hidden border border-slate-200 hover:shadow-2xl transition flex flex-col justify-between group" data-cat="epal">
+                <div>
+                    <div class="relative h-56 overflow-hidden bg-slate-100">
+                        <img src="images/slider.jpg" onerror="this.src='https://placehold.co/600x400/0f172a/ffffff?text=EPAL+%2F+Euro+Palet'" alt="EPAL / Euro Palet" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-4 left-4 bg-industrial-950 text-amberAccent text-xs font-bold px-3 py-1 rounded-lg shadow">Orijinal Sertifikalı</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-industrial-950 mb-2">EPAL / Euro Palet</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">Standardize 80x120 cm ölçülerinde, fırınlanmış, ISPM 15 ısıl işlem görmüş ve damgalı uluslararası ahşap paletler.</p>
+                        <ul class="space-y-1.5 text-xs text-slate-700 mb-6 font-medium">
+                            <li><i class="fa-solid fa-check text-amberAccent-dark mr-2"></i> Ölçü: 800 x 1200 mm</li>
+                            <li><i class="fa-solid fa-check text-amberAccent-dark mr-2"></i> Taşıma Kapasitesi: 1500 - 2000 kg</li>
+                            <li><i class="fa-solid fa-check text-amberAccent-dark mr-2"></i> Avrupa İhracatına Tam Uyumluluk</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="px-6 pb-6 pt-0 flex gap-2">
+                    <button onclick="openDetailModal('EPAL / Euro Palet', 'Avrupa standartlarında 80x120 cm fırınlanmış ahşap palet. Yüksek taşıma kapasitesi ve Isıl işlem damgalı (ISPM-15).', '80x120 cm', '1500-2000 kg', 'Sıfır / 1. Sınıf')" class="w-1/2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-3 rounded-xl transition text-xs border border-slate-300 flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-circle-info"></i> Detaylar
+                    </button>
+                    <button onclick="quickOrder('EPAL / Euro Palet')" class="w-1/2 bg-industrial-950 hover:bg-amberAccent hover:text-industrial-950 text-white font-semibold py-3 rounded-xl transition text-xs shadow-md flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-bolt"></i> Teklif Al
+                    </button>
+                </div>
+            </div>
+
+            <!-- Kart 2: TURPAL -->
+            <div class="product-card bg-white text-zinc-900 rounded-2xl shadow-xl overflow-hidden border border-slate-200 hover:shadow-2xl transition flex flex-col justify-between group" data-cat="turpal">
+                <div>
+                    <div class="relative h-56 overflow-hidden bg-slate-100">
+                        <img src="images/slider1.jpg" onerror="this.src='https://placehold.co/600x400/1e293b/ffffff?text=Turpal+Paletler'" alt="Turpal" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-4 left-4 bg-amber-600 text-white text-xs font-bold px-3 py-1 rounded-lg shadow">Yerli Standart</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-industrial-950 mb-2">TURPAL Paletler</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">Türkiye standartlarında üretilen, iç pazar lojistiğinde en çok tercih edilen dayanıklı ahşap palet serisi.</p>
+                        <ul class="space-y-1.5 text-xs text-slate-700 mb-6 font-medium">
+                            <li><i class="fa-solid fa-check text-amberAccent-dark mr-2"></i> Ölçü: 80x120 ve 100x120 cm</li>
+                            <li><i class="fa-solid fa-check text-amberAccent-dark mr-2"></i> Yüksek yük taşıma mukavemeti</li>
+                            <li><i class="fa-solid fa-check text-amberAccent-dark mr-2"></i> İç pazar lojistiğine özel ekonomik yapı</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="px-6 pb-6 pt-0 flex gap-2">
+                    <button onclick="openDetailModal('TURPAL Paletler', 'Türkiye iç pazarı ve zincir market lojistiği için özel standartlaştırılmış ahşap paletler.', '80x120 / 100x120 cm', '1200-1500 kg', 'Sıfır / Revize')" class="w-1/2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-3 rounded-xl transition text-xs border border-slate-300 flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-circle-info"></i> Detaylar
+                    </button>
+                    <button onclick="quickOrder('TURPAL Paletler')" class="w-1/2 bg-industrial-950 hover:bg-amberAccent hover:text-industrial-950 text-white font-semibold py-3 rounded-xl transition text-xs shadow-md flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-bolt"></i> Teklif Al
+                    </button>
+                </div>
+            </div>
+
+            <!-- Kart 3: CP Paletler -->
+            <div class="product-card bg-white text-zinc-900 rounded-2xl shadow-xl overflow-hidden border border-slate-200 hover:shadow-2xl transition flex flex-col justify-between group" data-cat="cp">
+                <div>
+                    <div class="relative h-56 overflow-hidden bg-slate-100">
+                        <img src="images/slider1.jpg" onerror="this.src='https://placehold.co/600x400/334155/ffffff?text=CP+Paletler'" alt="CP Paletler" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-4 left-4 bg-industrial-950 text-amberAccent text-xs font-bold px-3 py-1 rounded-lg shadow">Kimya Sektörü</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-industrial-950 mb-2">CP Paletler (CP1 - CP9)</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">Kimya, plastik ve hammadde sanayisi için CP1, CP3, CP6, CP9 standartlarında üretilmiş ağır hizmet paletleri.</p>
+                        <ul class="space-y-1.5 text-xs text-slate-700 mb-6 font-medium">
+                            <li><i class="fa-solid fa-check text-amberAccent-dark mr-2"></i> CP1, CP2, CP3, CP6, CP9 modelleri</li>
+                            <li><i class="fa-solid fa-check text-amberAccent-dark mr-2"></i> Sıvı varil ve big-bag çuval taşımaya uygun</li>
+                            <li><i class="fa-solid fa-check text-amberAccent-dark mr-2"></i> Uluslararası kimya endüstrisi onaylı</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="px-6 pb-6 pt-0 flex gap-2">
+                    <button onclick="openDetailModal('CP Paletler (CP1 - CP9)', 'Tuzla Kimya OSB ve sanayi kuruluşlarına özel CP1 (100x120), CP3 (114x114), CP9 çuval ve varil taşıma paletleri.', 'Farklı CP Ölçüleri', '1500-2500 kg', 'Sıfır / Standart')" class="w-1/2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-3 rounded-xl transition text-xs border border-slate-300 flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-circle-info"></i> Detaylar
+                    </button>
+                    <button onclick="quickOrder('CP Paletler (CP1 - CP9)')" class="w-1/2 bg-industrial-950 hover:bg-amberAccent hover:text-industrial-950 text-white font-semibold py-3 rounded-xl transition text-xs shadow-md flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-bolt"></i> Teklif Al
+                    </button>
+                </div>
+            </div>
+
+            <!-- Kart 4: Özel Ölçü & Ahşap Sandık -->
+            <div class="product-card bg-white text-zinc-900 rounded-2xl shadow-xl overflow-hidden border border-slate-200 hover:shadow-2xl transition flex flex-col justify-between group" data-cat="ozel">
+                <div>
+                    <div class="relative h-56 overflow-hidden bg-slate-100">
+                        <img src="images/slider2.jpg" onerror="this.src='https://placehold.co/600x400/475569/ffffff?text=Ozel+Olcu+ve+Ahsap+Sandik'" alt="Özel Ölçü & Ahşap Sandık" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-4 left-4 bg-amber-600 text-white text-xs font-bold px-3 py-1 rounded-lg shadow">Özel İmalat</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-industrial-950 mb-2">Özel Ölçü & Ahşap Sandık</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">Ağır sanayi makineleri ve hassas ekipmanlar için projenize uygun özel ölçülü palet ve kapatmalı ahşap sandıklar.</p>
+                        <ul class="space-y-1.5 text-xs text-slate-700 mb-6 font-medium">
+                            <li><i class="fa-solid fa-check text-amberAccent-dark mr-2"></i> İstenilen ölçü ve taşıma kapasitesi</li>
+                            <li><i class="fa-solid fa-check text-amberAccent-dark mr-2"></i> Kontrplak veya masif ahşap sandık</li>
+                            <li><i class="fa-solid fa-check text-amberAccent-dark mr-2"></i> ISPM 15 fırınlı ihracat sandıkları</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="px-6 pb-6 pt-0 flex gap-2">
+                    <button onclick="openDetailModal('Özel Ölçü & Ahşap Sandık', 'İhracat ve ağır yük nakliyesi için çizim veya teknik çizimlerinize göre imal edilen özel sandık çözümleri.', 'Müşteriye Özel', 'Sınırsız Kapasite', 'Özel Üretim')" class="w-1/2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-3 rounded-xl transition text-xs border border-slate-300 flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-circle-info"></i> Detaylar
+                    </button>
+                    <button onclick="quickOrder('Özel Ölçü & Ahşap Sandık')" class="w-1/2 bg-industrial-950 hover:bg-amberAccent hover:text-industrial-950 text-white font-semibold py-3 rounded-xl transition text-xs shadow-md flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-bolt"></i> Teklif Al
+                    </button>
+                </div>
+            </div>
+
+            <!-- Kart 5: 2. El Paletler -->
+            <div class="product-card bg-white text-zinc-900 rounded-2xl shadow-xl overflow-hidden border border-slate-200 hover:shadow-2xl transition flex flex-col justify-between group" data-cat="ikinciel">
+                <div>
+                    <div class="relative h-56 overflow-hidden bg-slate-100">
+                        <img src="images/slider3.jpg" onerror="this.src='https://placehold.co/600x400/090d16/ffffff?text=2.+El+Paletler'" alt="2. El Paletler" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-4 left-4 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-lg shadow">Geri Dönüşüm</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-industrial-950 mb-2">2. El Paletler (Alım / Satım)</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">Revize edilmiş, bakımlı, sağlam ve bütçe dostu ikinci el palet seçenekleri. Adresinizden nakit palet alımı.</p>
+                        <ul class="space-y-1.5 text-xs text-slate-700 mb-6 font-medium">
+                            <li><i class="fa-solid fa-check text-amberAccent-dark mr-2"></i> 80x120, 100x120 ve özel boylar</li>
+                            <li><i class="fa-solid fa-check text-amberAccent-dark mr-2"></i> Kontrol edilmiş sağlam stok</li>
+                            <li><i class="fa-solid fa-check text-amberAccent-dark mr-2"></i> Adresten yerinde nakit alım seçeneği</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="px-6 pb-6 pt-0 flex gap-2">
+                    <button onclick="openDetailModal('2. El Paletler (Alım / Satım)', 'Çevre dostu geri dönüşüm paletleri. Hem hurda/atıl paletlerinizi değerinde alıyor hem de revize edilmiş sağlam palet satıyoruz.', '80x120 / 100x120', '800-1500 kg', '2. El Bakımlı')" class="w-1/2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-3 rounded-xl transition text-xs border border-slate-300 flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-circle-info"></i> Detaylar
+                    </button>
+                    <button onclick="quickOrder('2. El Paletler (Alım / Satım)')" class="w-1/2 bg-industrial-950 hover:bg-amberAccent hover:text-industrial-950 text-white font-semibold py-3 rounded-xl transition text-xs shadow-md flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-bolt"></i> Teklif Al
+                    </button>
+                </div>
+            </div>
+
+            <!-- Kart 6: Plastik Paletler -->
+            <div class="product-card bg-white text-zinc-900 rounded-2xl shadow-xl overflow-hidden border border-slate-200 hover:shadow-2xl transition flex flex-col justify-between group" data-cat="plastik">
+                <div>
+                    <div class="relative h-56 overflow-hidden bg-slate-100">
+                        <img src="images/slider4.jpg" onerror="this.src='https://placehold.co/600x400/1f2937/ffffff?text=Plastik+Paletler'" alt="Plastik Paletler" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-4 left-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-lg shadow">Hijyenik Seçenek</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-industrial-950 mb-2">Plastik Paletler</h3>
+                        <p class="text-slate-600 text-sm mb-4 leading-relaxed">Gıda ve ilaç tesislerine uygun, yıkanabilir, neme dayanıklı ve uzun ömürlü plastik palet çözümleri.</p>
+                        <ul class="space-y-1.5 text-xs text-slate-700 mb-6 font-medium">
+                            <li><i class="fa-solid fa-check text-amberAccent-dark mr-2"></i> Delikli ve düz üst yüzey modelleri</li>
+                            <li><i class="fa-solid fa-check text-amberAccent-dark mr-2"></i> Bakteri barındırmaz, hijyenik yapıda</li>
+                            <li><i class="fa-solid fa-check text-amberAccent-dark mr-2"></i> Ağır yük ve raf sistemlerine uygun</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="px-6 pb-6 pt-0 flex gap-2">
+                    <button onclick="openDetailModal('Plastik Paletler', 'Nem ve sudan etkilenmeyen, gıda ve eczacılık standartlarına uygun uzun ömürlü plastik paletler.', '80x120 / 100x120', '1000-3000 kg', 'Sıfır HD-PE')" class="w-1/2 bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold py-3 rounded-xl transition text-xs border border-slate-300 flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-circle-info"></i> Detaylar
+                    </button>
+                    <button onclick="quickOrder('Plastik Paletler')" class="w-1/2 bg-industrial-950 hover:bg-amberAccent hover:text-industrial-950 text-white font-semibold py-3 rounded-xl transition text-xs shadow-md flex items-center justify-center gap-1">
+                        <i class="fa-solid fa-bolt"></i> Teklif Al
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Hakkımızda / Misyon & Vizyon -->
+    <section id="misyon-vizyon" class="py-20 bg-industrial-900 border-t border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-amberAccent font-bold text-sm tracking-wider uppercase bg-amberAccent/10 px-3 py-1 rounded-md border border-amberAccent/20">Kurumsal Profil</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3 mb-6">Tuzla Palet Hakkında</h2>
+                    <p class="text-slate-300 mb-6 leading-relaxed">
+                        Tuzla Palet, İstanbul Tuzla ve Kocaeli Gebze sanayi havzasında faaliyet gösteren fabrikaların ahşap ambalaj ve palet ihtiyaçlarını karşılamak üzere kurulmuştur. Güçlü stok kapasitemiz, uzman kadromuz ve hızlı nakliye ağımızla çözüm ortağınızız.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4 p-4 bg-industrial-950 rounded-2xl border border-slate-800">
+                            <div class="bg-amberAccent/20 text-amberAccent p-3 rounded-xl mt-1">
+                                <i class="fa-solid fa-bullseye text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white text-lg">Misyonumuz</h3>
+                                <p class="text-slate-300 text-sm mt-1">Müşterilerimizin tedarik zincirinde aksama yaşamaması için kaliteli, standartlara uygun ve ekonomik ahşap paletleri tam zamanında teslim etmek.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4 p-4 bg-industrial-950 rounded-2xl border border-slate-800">
+                            <div class="bg-amberAccent/20 text-amberAccent p-3 rounded-xl mt-1">
+                                <i class="fa-solid fa-eye text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white text-lg">Vizyonumuz</h3>
+                                <p class="text-slate-300 text-sm mt-1">Marmara bölgesinde endüstriyel ahşap ambalaj ve 2. el palet geri dönüşüm sektöründe sürdürülebilir, yenilikçi ve ilk akla gelen lider marka olmak.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-slate-800 bg-industrial-950 h-[450px]">
+                        <img src="images/slider.jpg" onerror="this.src='https://placehold.co/800x600/1e293b/ffffff?text=Tuzla+Palet+Tesisleri'" alt="Tuzla Palet Tesisleri" class="w-full h-full object-cover opacity-80">
+                        <div class="absolute inset-0 bg-gradient-to-t from-industrial-950 via-transparent to-transparent flex items-end p-8">
+                            <div class="text-white">
+                                <p class="text-amberAccent font-bold text-sm tracking-wide">YÜKSEK STOK KAPASİTESİ</p>
+                                <h3 class="text-2xl font-extrabold">Tuzla ve Kocaeli Bölgesinde Kesintisiz Tedarik</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alım - Satım Süreci -->
+    <section id="alim-satim" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-amberAccent font-bold text-sm tracking-wider uppercase bg-amberAccent/20 px-3 py-1 rounded-md">Kolay Süreç</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3 mb-4">Palet Alım & Satım Süreci Nasıl İşler?</h2>
+            <p class="text-slate-300">İster palet satın alın, ister deponuzdaki fazla paletleri satın; 3 adımda hızlı çözüme ulaşın.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-industrial-900 border border-slate-800 rounded-2xl p-8 relative hover:border-amberAccent transition">
+                <span class="absolute top-6 right-6 text-4xl font-extrabold text-slate-700">01</span>
+                <div class="w-12 h-12 bg-amberAccent/20 text-amberAccent rounded-xl flex items-center justify-center text-xl mb-6">
+                    <i class="fa-solid fa-phone-volume"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Talebinizi İletin</h3>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                    0535 768 35 72 hattımızdan veya web sitemizdeki form üzerinden ihtiyacınız olan palet ölçü/adetini iletin.
+                </p>
+            </div>
+
+            <div class="bg-industrial-900 border border-slate-800 rounded-2xl p-8 relative hover:border-amberAccent transition">
+                <span class="absolute top-6 right-6 text-4xl font-extrabold text-slate-700">02</span>
+                <div class="w-12 h-12 bg-amberAccent/20 text-amberAccent rounded-xl flex items-center justify-center text-xl mb-6">
+                    <i class="fa-solid fa-calculator"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Fiyat Teklifi Alın</h3>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                    Mevcut piyasa koşullarına göre en cazip alım/satım B2B teklifimizi hazırlayıp anında tarafınıza iletelim.
+                </p>
+            </div>
+
+            <div class="bg-industrial-900 border border-slate-800 rounded-2xl p-8 relative hover:border-amberAccent transition">
+                <span class="absolute top-6 right-6 text-4xl font-extrabold text-slate-700">03</span>
+                <div class="w-12 h-12 bg-amberAccent/20 text-amberAccent rounded-xl flex items-center justify-center text-xl mb-6">
+                    <i class="fa-solid fa-truck-moving"></i>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-3">Teslimat & Ödeme</h3>
+                <p class="text-slate-300 text-sm leading-relaxed">
+                    Anlaşılan saatte adresinize kendi araçlarımızla gelip paletlerin teslimatını yapalım veya yerinizden nakit alalım.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hızlı Fiyat / Teklif Formu & İletişim -->
+    <section id="iletisim" class="bg-industrial-900 py-20 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-amberAccent font-bold text-sm tracking-wider uppercase bg-amberAccent/20 px-3 py-1 rounded-md">B2B Danışma</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3 mb-4">Hızlı B2B Fiyat Teklifi Formu</h2>
+                <p class="text-slate-300">Formu doldurduğunuzda teklif talebiniz anında sistemimize ve Admin Paneline işlenecektir.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                <!-- Direct Contact Info -->
+                <div class="space-y-6">
+                    <div class="bg-industrial-950 p-6 rounded-2xl shadow-md border border-slate-800 flex items-center gap-4">
+                        <div class="w-12 h-12 bg-amberAccent/20 text-amberAccent rounded-xl flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 font-medium">Telefon & WhatsApp</p>
+                            <a href="tel:05357683572" class="font-bold text-white hover:text-amberAccent text-lg">0535 768 35 72</a>
+                        </div>
+                    </div>
+
+                    <div class="bg-industrial-950 p-6 rounded-2xl shadow-md border border-slate-800 flex items-center gap-4">
+                        <div class="w-12 h-12 bg-amberAccent/20 text-amberAccent rounded-xl flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 font-medium">E-Posta Adresi</p>
+                            <a href="mailto:koray_palut@hotmail.com" class="font-bold text-white hover:text-amberAccent text-sm break-all">koray_palut@hotmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="bg-industrial-950 p-6 rounded-2xl shadow-md border border-slate-800 flex items-center gap-4">
+                        <div class="w-12 h-12 bg-amberAccent/20 text-amberAccent rounded-xl flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs text-slate-400 font-medium">Hizmet / Fabrika Adresi</p>
+                            <p class="font-bold text-white text-sm">İSTANBUL / TUZLA OSB ve Tüm Kocaeli</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="lg:col-span-2 bg-industrial-950 rounded-2xl shadow-xl border border-slate-800 p-8 sm:p-10">
+                    <h3 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                        <i class="fa-solid fa-paper-plane text-amberAccent"></i>
+                        <span>Teklif Talebi İletin</span>
+                    </h3>
+                    
+                    <form id="quote-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="firma" class="block text-xs font-bold text-slate-300 uppercase mb-2">Firma / Müşteri Adı *</label>
+                                <input type="text" id="firma" required class="w-full bg-industrial-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amberAccent transition" placeholder="ABC Lojistik Ltd.">
+                            </div>
+                            <div>
+                                <label for="ad" class="block text-xs font-bold text-slate-300 uppercase mb-2">Yetkili Adı *</label>
+                                <input type="text" id="ad" required class="w-full bg-industrial-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amberAccent transition" placeholder="Ahmet Yılmaz">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                            <div>
+                                <label for="telefon" class="block text-xs font-bold text-slate-300 uppercase mb-2">Telefon *</label>
+                                <input type="tel" id="telefon" required class="w-full bg-industrial-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amberAccent transition" placeholder="0535 768 35 72">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-xs font-bold text-slate-300 uppercase mb-2">E-Posta Adresi</label>
+                                <input type="email" id="email" class="w-full bg-industrial-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amberAccent transition" placeholder="ornek@firma.com">
+                            </div>
+                            <div>
+                                <label for="talep-turu" class="block text-xs font-bold text-slate-300 uppercase mb-2">Palet Kategorisi *</label>
+                                <select id="talep-turu" class="w-full bg-industrial-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amberAccent transition">
+                                    <option value="EPAL / Euro Palet">EPAL / Euro Palet</option>
+                                    <option value="TURPAL Paletler">TURPAL Palet</option>
+                                    <option value="CP Paletler (CP1 - CP9)">CP Paletler (Kimya)</option>
+                                    <option value="Özel Ölçü & Ahşap Sandık">Özel Ölçü & Ahşap Sandık</option>
+                                    <option value="2. El Paletler (Alım / Satım)">2. El Paletler</option>
+                                    <option value="Plastik Paletler">Plastik Paletler</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="adet" class="block text-xs font-bold text-slate-300 uppercase mb-2">Tahmini Adet *</label>
+                                <input type="text" id="adet" required class="w-full bg-industrial-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amberAccent transition" placeholder="Örn: 250 Adet">
+                            </div>
+                            <div>
+                                <label for="bolge" class="block text-xs font-bold text-slate-300 uppercase mb-2">Teslimat / Alım Bölgesi</label>
+                                <input type="text" id="bolge" class="w-full bg-industrial-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amberAccent transition" placeholder="Örn: Tuzla Kimya OSB">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="mesaj" class="block text-xs font-bold text-slate-300 uppercase mb-2">Mesaj & Detaylar</label>
+                            <textarea id="mesaj" rows="3" class="w-full bg-industrial-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-amberAccent transition" placeholder="Ek gereksinimler, fırınlama talebi, ölçü detayları vb."></textarea>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button type="submit" class="flex-1 bg-amberAccent hover:bg-amberAccent-dark text-industrial-950 font-bold py-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-base">
+                                <i class="fa-brands fa-whatsapp text-xl"></i>
+                                <span>WhatsApp İle Gönder & Kaydet</span>
+                            </button>
+                            <button type="button" onclick="sendMailDirect()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold px-6 py-4 rounded-xl border border-slate-700 transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-envelope text-amberAccent"></i>
+                                <span>E-Posta Taslağı</span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Alert / Status -->
+                    <div id="success-box" class="hidden mt-6 bg-emerald-950 border border-emerald-700 text-emerald-200 p-4 rounded-xl text-center">
+                        <i class="fa-solid fa-circle-check text-emerald-400 text-xl mb-1"></i>
+                        <h4 class="font-bold">Teklif Talebiniz Alındı ve Admin Paneline İşlendi!</h4>
+                        <p class="text-xs mt-1">WhatsApp veya Mail ile yönlendiriliyorsunuz...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Paneli Modal -->
+    <div id="admin-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white text-slate-900 w-full max-w-5xl rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col border border-slate-300">
+            <!-- Modal Header -->
+            <div class="bg-industrial-950 text-white p-6 flex justify-between items-center border-b border-slate-800">
+                <div class="flex items-center gap-3">
+                    <div class="bg-amberAccent text-industrial-950 p-2 rounded-lg">
+                        <i class="fa-solid fa-user-shield text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold">Admin Teklif Takip Paneli</h3>
+                        <p class="text-xs text-slate-400">Gelen B2B teklif taleplerini inceleyin ve yönetin</p>
+                    </div>
+                </div>
+                <button onclick="toggleAdminModal(false)" class="text-slate-400 hover:text-white text-2xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 overflow-y-auto flex-1 space-y-6">
+                <!-- Action Bar -->
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-bold text-slate-500 uppercase">Toplam Teklif:</span>
+                        <span id="admin-count" class="bg-amberAccent text-industrial-950 text-xs font-extrabold px-2.5 py-1 rounded-full">0</span>
+                    </div>
+                    <div class="flex items-center gap-3 flex-wrap">
+                        <button onclick="exportCSV()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
+                            <i class="fa-solid fa-file-excel"></i> Excel / CSV İndir
+                        </button>
+                        <button onclick="clearQuotes()" class="bg-rose-600 hover:bg-rose-700 text-white px-4 py-2 rounded-xl text-xs font-bold flex items-center gap-2 transition">
+                            <i class="fa-solid fa-trash-can"></i> Tümünü Temizle
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="overflow-x-auto rounded-2xl border border-slate-200 shadow-sm">
+                    <table class="w-full text-left text-xs border-collapse">
+                        <thead class="bg-slate-100 text-slate-700 uppercase font-bold border-b border-slate-200">
+                            <tr>
+                                <th class="p-3">Tarih</th>
+                                <th class="p-3">Firma / Ad</th>
+                                <th class="p-3">İletişim</th>
+                                <th class="p-3">Kategori</th>
+                                <th class="p-3">Adet</th>
+                                <th class="p-3">Durum</th>
+                                <th class="p-3 text-right">İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-table-body" class="divide-y divide-slate-200 font-medium">
+                            <!-- Javascript populates this -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="bg-slate-100 p-4 border-t border-slate-200 text-right">
+                <button onclick="toggleAdminModal(false)" class="bg-industrial-950 text-white font-bold px-6 py-2.5 rounded-xl text-sm">Kapat</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div id="detail-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-white text-slate-900 w-full max-w-lg rounded-3xl shadow-2xl p-6 relative border border-slate-200">
+            <button onclick="closeDetailModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-2xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3 id="modal-title" class="text-2xl font-bold text-industrial-950 mb-3"></h3>
+            <p id="modal-desc" class="text-slate-600 text-sm mb-6 leading-relaxed"></p>
+            
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2 text-xs mb-6 font-medium">
+                <div class="flex justify-between">
+                    <span class="text-slate-500">Ölçü/Boyut:</span>
+                    <span id="modal-size" class="font-bold text-slate-800"></span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-500">Taşıma Kapasitesi:</span>
+                    <span id="modal-cap" class="font-bold text-slate-800"></span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-slate-500">Durum/Sınıf:</span>
+                    <span id="modal-status" class="font-bold text-slate-800"></span>
+                </div>
+            </div>
+
+            <button id="modal-order-btn" class="w-full bg-amberAccent hover:bg-amberAccent-dark text-industrial-950 font-bold py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>Bu Ürün İçin Teklif İste</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-industrial-950 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="bg-amberAccent text-industrial-950 p-2 rounded-xl">
+                        <i class="fa-solid fa-boxes-stacked text-xl"></i>
+                    </div>
+                    <span class="text-xl font-extrabold text-white">TUZLA<span class="text-amberAccent">PALET</span></span>
+                </div>
+                <p class="text-sm text-slate-400 leading-relaxed mb-3">
+                    Tuzla, Gebze ve Kocaeli sanayi bölgelerinde sıfır ve 2. el ahşap palet tedariğinde güvenilir çözüm ortağınız.
+                </p>
+                <p class="text-xs text-slate-300"><i class="fa-solid fa-phone text-amberAccent mr-1.5"></i> 0535 768 35 72</p>
+                <p class="text-xs text-slate-300 mt-1"><i class="fa-solid fa-envelope text-amberAccent mr-1.5"></i> koray_palut@hotmail.com</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Hızlı Erişim</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-amberAccent transition">Ana Sayfa</a></li>
+                    <li><a href="#kategoriler" class="hover:text-amberAccent transition">Palet Kategorileri</a></li>
+                    <li><a href="#alim-satim" class="hover:text-amberAccent transition">Alım & Satım Süreci</a></li>
+                    <li><a href="#misyon-vizyon" class="hover:text-amberAccent transition">Hakkımızda</a></li>
+                    <li><a href="#iletisim" class="hover:text-amberAccent transition">İletişim & Teklif</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Hizmet Bölgeleri</h4>
+                <p class="text-sm leading-relaxed mb-4">
+                    Tuzla Kimya OSB, Birlik OSB, Deri OSB, TOSB, Gebze OSB, Dilovası ve Kocaeli genelinde hızlı teslimat.
+                </p>
+                <div class="flex gap-2 text-amberAccent flex-wrap">
+                    <span class="bg-industrial-900 border border-slate-800 px-2.5 py-1 rounded text-xs font-semibold">Tuzla</span>
+                    <span class="bg-industrial-900 border border-slate-800 px-2.5 py-1 rounded text-xs font-semibold">Gebze</span>
+                    <span class="bg-industrial-900 border border-slate-800 px-2.5 py-1 rounded text-xs font-semibold">Dilovası</span>
+                    <span class="bg-industrial-900 border border-slate-800 px-2.5 py-1 rounded text-xs font-semibold">Kocaeli</span>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-800 text-center text-xs text-slate-500">
+            &copy; 2026 Tuzla Palet. Tüm Hakları Saklıdır. | İletişim: 0535 768 35 72
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/905357683572?text=Merhaba,%20palet%20tedari%C4%9Fi%20i%C3%A7in%20bilgi%20almak%20istiyorum." target="_blank" aria-label="WhatsApp İletişim" class="fixed bottom-6 right-6 z-40 bg-green-500 hover:bg-green-600 text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center text-3xl transition transform hover:scale-110 active:scale-95 group">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="absolute right-20 bg-industrial-900 text-white text-xs font-semibold px-3 py-1.5 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition whitespace-nowrap border border-slate-700 pointer-events-none">
+            WhatsApp ile İletişime Geçin (0535 768 35 72)
+        </span>
+    </a>
+
+    <!-- App Logic JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Hero Slider Logic (5 local images: slider.jpg - slider4.jpg)
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        const totalSlides = slides.length;
+        let sliderTimer;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.opacity = i === index ? '1' : '0';
+                slide.style.pointerEvents = i === index ? 'auto' : 'none';
+            });
+            dots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.remove('w-3', 'bg-slate-600');
+                    dot.classList.add('w-8', 'bg-amberAccent');
+                } else {
+                    dot.classList.remove('w-8', 'bg-amberAccent');
+                    dot.classList.add('w-3', 'bg-slate-600');
+                }
+            });
+            currentSlideIndex = index;
+        }
+
+        function nextSlide() {
+            let nextIndex = (currentSlideIndex + 1) % totalSlides;
+            showSlide(nextIndex);
+            resetTimer();
+        }
+
+        function prevSlide() {
+            let prevIndex = (currentSlideIndex - 1 + totalSlides) % totalSlides;
+            showSlide(prevIndex);
+            resetTimer();
+        }
+
+        function currentSlide(index) {
+            showSlide(index);
+            resetTimer();
+        }
+
+        function startTimer() {
+            sliderTimer = setInterval(nextSlide, 5000);
+        }
+
+        function resetTimer() {
+            clearInterval(sliderTimer);
+            startTimer();
+        }
+
+        // Category Filter Logic (Paletix Style)
+        function filterCategory(category) {
+            const cards = document.querySelectorAll('.product-card');
+            const filterBtns = document.querySelectorAll('.cat-filter-btn');
+
+            filterBtns.forEach(btn => {
+                btn.classList.remove('bg-amberAccent', 'text-industrial-950', 'font-bold', 'shadow-md', 'active');
+                btn.classList.add('bg-slate-800', 'text-slate-200', 'font-medium');
+            });
+
+            event.target.classList.remove('bg-slate-800', 'text-slate-200', 'font-medium');
+            event.target.classList.add('bg-amberAccent', 'text-industrial-950', 'font-bold', 'shadow-md', 'active');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-cat') === category) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Quick Fill Form
+        function quickOrder(categoryName) {
+            const selectEl = document.getElementById('talep-turu');
+            selectEl.value = categoryName;
+            document.getElementById('iletisim').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Detail Modal
+        function openDetailModal(title, desc, size, cap, status) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-desc').innerText = desc;
+            document.getElementById('modal-size').innerText = size;
+            document.getElementById('modal-cap').innerText = cap;
+            document.getElementById('modal-status').innerText = status;
+            
+            document.getElementById('modal-order-btn').onclick = function() {
+                closeDetailModal();
+                quickOrder(title);
+            };
+
+            document.getElementById('detail-modal').classList.remove('hidden');
+        }
+
+        function closeDetailModal() {
+            document.getElementById('detail-modal').classList.add('hidden');
+        }
+
+        // Quote Storage & Admin System
+        let quotes = JSON.parse(localStorage.getItem('tuzla_palet_quotes') || '[]');
+
+        function updateAdminUI() {
+            const tableBody = document.getElementById('admin-table-body');
+            const countBadge = document.getElementById('admin-count');
+            const navBadge = document.getElementById('nav-badge');
+            
+            countBadge.innerText = quotes.length;
+            if(quotes.length > 0) {
+                navBadge.innerText = quotes.length;
+                navBadge.classList.remove('hidden');
+            } else {
+                navBadge.classList.add('hidden');
+            }
+
+            if (quotes.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-slate-400">Henüz teklif talebi bulunmuyor.</td></tr>`;
+                return;
+            }
+
+            tableBody.innerHTML = quotes.map((q, index) => `
+                <tr class="hover:bg-slate-50 transition">
+                    <td class="p-3 text-slate-500 whitespace-nowrap">${q.date}</td>
+                    <td class="p-3 font-bold text-slate-800">${q.firma}<br><span class="text-slate-500 font-normal">${q.ad}</span></td>
+                    <td class="p-3"><a href="tel:${q.telefon}" class="text-blue-600 hover:underline font-bold">${q.telefon}</a></td>
+                    <td class="p-3"><span class="bg-amber-100 text-amber-800 text-[10px] px-2 py-0.5 rounded font-bold">${q.talep}</span></td>
+                    <td class="p-3 font-bold">${q.adet}</td>
+                    <td class="p-3">
+                        <select onchange="updateStatus(${index}, this.value)" class="bg-slate-100 border border-slate-300 rounded text-[11px] p-1 font-semibold">
+                            <option value="Yeni" ${q.status === 'Yeni' ? 'selected' : ''}>Yeni</option>
+                            <option value="İncelendi" ${q.status === 'İncelendi' ? 'selected' : ''}>İncelendi</option>
+                            <option value="Onaylandı" ${q.status === 'Onaylandı' ? 'selected' : ''}>Onaylandı</option>
+                        </select>
+                    </td>
+                    <td class="p-3 text-right space-x-1">
+                        <button onclick="replyWhatsApp(${index})" title="WhatsApp Yanıtla" class="bg-green-600 text-white p-1.5 rounded hover:bg-green-700"><i class="fa-brands fa-whatsapp"></i></button>
+                        <button onclick="deleteQuote(${index})" title="Sil" class="bg-rose-600 text-white p-1.5 rounded hover:bg-rose-700"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const firma = document.getElementById('firma').value;
+            const ad = document.getElementById('ad').value;
+            const telefon = document.getElementById('telefon').value;
+            const email = document.getElementById('email').value;
+            const talep = document.getElementById('talep-turu').value;
+            const adet = document.getElementById('adet').value;
+            const bolge = document.getElementById('bolge').value;
+            const mesaj = document.getElementById('mesaj').value;
+
+            const newQuote = {
+                id: Date.now(),
+                date: new Date().toLocaleDateString('tr-TR') + ' ' + new Date().toLocaleTimeString('tr-TR', {hour: '2-digit', minute:'2-digit'}),
+                firma,
+                ad,
+                telefon,
+                email,
+                talep,
+                adet,
+                bolge,
+                mesaj,
+                status: 'Yeni'
+            };
+
+            quotes.unshift(newQuote);
+            localStorage.setItem('tuzla_palet_quotes', JSON.stringify(quotes));
+            updateAdminUI();
+
+            document.getElementById('success-box').classList.remove('hidden');
+
+            const text = `Merhaba Tuzla Palet,%0A%0A*B2B Teklif Talebi:*%0A*Firma:* ${encodeURIComponent(firma)}%0A*Yetkili:* ${encodeURIComponent(ad)}%0A*Telefon:* ${encodeURIComponent(telefon)}%0A*Kategori:* ${encodeURIComponent(talep)}%0A*Adet:* ${encodeURIComponent(adet)}%0A*Bölge:* ${encodeURIComponent(bolge)}%0A*Mesaj:* ${encodeURIComponent(mesaj)}`;
+
+            setTimeout(() => {
+                window.open(`https://wa.me/905357683572?text=${text}`, '_blank');
+            }, 800);
+        }
+
+        function sendMailDirect() {
+            const firma = document.getElementById('firma').value || 'Belirtilmedi';
+            const ad = document.getElementById('ad').value || 'Belirtilmedi';
+            const telefon = document.getElementById('telefon').value || 'Belirtilmedi';
+            const talep = document.getElementById('talep-turu').value;
+            const adet = document.getElementById('adet').value || '0';
+            const mesaj = document.getElementById('mesaj').value || '';
+
+            const subject = encodeURIComponent(`B2B Palet Teklif Talebi - ${firma}`);
+            const body = encodeURIComponent(`Firma: ${firma}\nYetkili: ${ad}\nTelefon: ${telefon}\nPalet Kategorisi: ${talep}\nAdet: ${adet}\nMesaj: ${mesaj}`);
+
+            window.location.href = `mailto:koray_palut@hotmail.com?subject=${subject}&body=${body}`;
+        }
+
+        function toggleAdminModal(show) {
+            const modal = document.getElementById('admin-modal');
+            if (show) {
+                modal.classList.remove('hidden');
+                updateAdminUI();
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
+
+        function updateStatus(index, status) {
+            quotes[index].status = status;
+            localStorage.setItem('tuzla_palet_quotes', JSON.stringify(quotes));
+            updateAdminUI();
+        }
+
+        function deleteQuote(index) {
+            quotes.splice(index, 1);
+            localStorage.setItem('tuzla_palet_quotes', JSON.stringify(quotes));
+            updateAdminUI();
+        }
+
+        function clearQuotes() {
+            if (confirm('Tüm teklif kayıtlarını silmek istediğinize emin misiniz?')) {
+                quotes = [];
+                localStorage.setItem('tuzla_palet_quotes', JSON.stringify(quotes));
+                updateAdminUI();
+            }
+        }
+
+        function replyWhatsApp(index) {
+            const q = quotes[index];
+            const text = `Merhaba ${q.ad} Bey (${q.firma}), Tuzla Palet olarak ${q.talep} (${q.adet}) talebinizi aldık. Fiyat teklifimiz: `;
+            const phone = q.telefon.replace(/[^0-9]/g, '');
+            window.open(`https://wa.me/90${phone}?text=${encodeURIComponent(text)}`, '_blank');
+        }
+
+        function exportCSV() {
+            if (quotes.length === 0) {
+                alert('İndirilecek teklif bulunmamaktadır.');
+                return;
+            }
+            let csvContent = "data:text/csv;charset=utf-8,Tarih,Firma,Yetkili,Telefon,Email,Kategori,Adet,Bolge,Durum\n";
+            quotes.forEach(q => {
+                csvContent += `"${q.date}","${q.firma}","${q.ad}","${q.telefon}","${q.email}","${q.talep}","${q.adet}","${q.bolge}","${q.status}"\n`;
+            });
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "tuzla_palet_teklifleri.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // On Load initialization
+        window.onload = function() {
+            showSlide(0);
+            startTimer();
+            updateAdminUI();
+        };
+    </script>
+</body>
+</html>
